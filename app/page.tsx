@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { DownloadButton } from "@/components/ui/download-button";
 import imagePlaceholder from "@/public/image-placeholder.png";
 import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@uidotdev/usehooks";
@@ -106,7 +107,9 @@ export default function Home() {
                 className="w-full resize-none border-gray-300 border-opacity-50 bg-gray-400 px-4 text-base placeholder-gray-300"
               />
               <div
-                className={`${isFetching || isDebouncing ? "flex" : "hidden"} absolute bottom-3 right-3 items-center justify-center`}
+                className={`${
+                  isFetching || isDebouncing ? "flex" : "hidden"
+                } absolute bottom-3 right-3 items-center justify-center`}
               >
                 <Spinner className="size-4" />
               </div>
@@ -148,9 +151,16 @@ export default function Home() {
                 width={1024}
                 height={768}
                 src={`data:image/png;base64,${activeImage.b64_json}`}
-                alt=""
-                className={`${isFetching ? "animate-pulse" : ""} max-w-full rounded-lg object-cover shadow-sm shadow-black`}
+                alt="Generated image"
+                className={`${
+                  isFetching ? "animate-pulse" : ""
+                } max-w-full rounded-lg object-cover shadow-sm shadow-black`}
               />
+              <div className="mt-4">
+                <DownloadButton
+                  imageUrl={`data:image/png;base64,${activeImage.b64_json}`}
+                />
+              </div>
             </div>
 
             <div className="mt-4 flex gap-4 overflow-x-scroll pb-4">
